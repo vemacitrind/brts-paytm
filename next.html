@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Ticket Layout</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+
+        .back-button {
+            background-color: transparent;
+            border: none;
+            height: 5vh;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .apk-logo {
+            width: 100px;
+            height: 50px;
+            display: inline-block;
+            text-align: center;
+            line-height: 50px;
+            border-radius: 5px;
+        }
+
+        .apk-logo img {
+            width: 20vw;
+        }
+
+        .help {
+            color: #007bff;
+        }
+
+        /* Scrollable Section */
+        .scrollable {
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .bluecontainer {
+            background-image: linear-gradient(#dcf7fa 97%, #00B9F1 97% 98.5%, #002E6E 98.5% 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+        }
+
+        .qr-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .location {
+            display: flex;
+            align-items: center;
+            padding-bottom: 0px;
+            color: black;
+            /* margin-bottom: 10px; */
+        }
+
+        .info1 {
+            margin: 2px 0px 5px 0px;
+        }
+
+        .passenger-info {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 4cap;
+            padding: 5px;
+            font-size: large;
+            font-weight: bolder;
+            margin: 10px 0;
+            padding-right: 10px;
+        }
+
+        .rupee {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .date {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .view-ticket {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #00B9F1;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 90%;
+            margin-bottom: 10px;
+        }
+
+        .view-ticket:hover {
+            background-color: darkblue;
+        }
+
+        /* Floating Island Section */
+
+
+        .info {
+            color: rgb(33, 33, 33);
+            font-size: small;
+        }
+
+        .timer-container {
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: white;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 1cap;
+        }
+
+        .title {
+            margin: 10px 0px;
+            font: small;
+        }
+
+        .trip-details {
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid gray;
+            border-radius: 0.5cap;
+        }
+
+        .trip-details h1 {
+            margin: 0 0 20px;
+            font-size: medium;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .info {
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .info .heading {
+            font-size: small;
+            font-weight: 500;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .info .value {
+            font-size: small;
+            color: #333;
+            padding-bottom: 10px;
+            border-bottom: 1px solid gray;
+        }
+
+
+
+        .copy-section .order-id {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .copy-section button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .copy-section button:hover {
+            background-color: #0056b3;
+        }
+
+        .info-note {
+            font-size: xx-small;
+            color: #000000;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .payment-details {
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid gray;
+            border-radius: 0.5cap;
+            /* max-width: 400px; */
+            background-color: #fff;
+        }
+
+        .payment-details h1 {
+            margin: 0 0 20px;
+            font-size: medium;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .info {
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: small;
+        }
+
+        .info .heading {
+            font-size: small;
+            color: #aaa;
+            margin-bottom: 5px;
+        }
+
+        .info .value {
+            font-size: small;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid gray;
+        }
+
+        .info-note {
+            font-size: xx-small;
+            color: #000000;
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+
+        .floating {
+            position: fixed;
+            top: 90%;
+            left: 15%;
+        }
+
+        .floating-island {
+            display: inline-flex;
+            padding: 0 20px;
+            gap: 10px;
+            border-radius: 4cap;
+            background: #002E6E;
+        }
+
+        .floating-island button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border: none;
+            border-radius: 30px;
+            background-color: transparent;
+            color: #fff;
+            cursor: pointer;
+            font-size: small;
+            text-align: center;
+        }
+
+        .floating-island button:hover {
+            background-color: #0056b3;
+        }
+
+        .floating-island img:not(.acc) {
+            width: 20px;
+            height: 20px;
+            margin-bottom: 5px;
+            filter: invert(100%) contrast(100%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="scrollable">
+        <!-- Header Section -->
+        <div class="header">
+            <a href="index.html"><img src="img/left-arrow.png" alt="Back" class="back-button"></a>
+            <div class="apk-logo"><img src="img/Paytm-Logo.wine.png" alt="APK Logo"></div>
+            <div class="help">Help</div>
+        </div>
+
+        <!-- Scrollable Section -->
+        <div class="bluecontainer">
+            <center><img src="img/Beige and White Be Yourself Square Pillow.png" alt=""
+                    style="border-radius: 50%;width: 10vh; margin-bottom: 10px;"></center>
+            <div class="qr-container">
+
+                <!-- Journey Information -->
+                <div class="location">
+                    <div id="from" style="font-weight: bolder; font-size: larger; padding-right: 5px;">CTM cros..</div>
+                    <img src="img/right-arrow.png" alt="Arrow" style="width: 5vw;">
+                    <div id="to" style="font-weight: bolder; font-size: larger; padding-left: 5px;">Sanad Circle..</div>
+                </div>
+
+                <!-- Ticket Details -->
+                <div class="info1">AC</div>
+                <div class="info1">1 Adult Ticket</div>
+
+                <!-- Passenger Info -->
+                <div class="passenger-info">
+                    <img src="img/man.png" alt="Passenger Icon" style="width: 4vh; padding-right: 5px;"> 1
+                </div>
+
+                <!-- Payment Info -->
+                <div class="rupee">&#x20B9; 20 <img src="img/check.png" alt="Check" style="width: 4vh;"></div>
+                <div class="mess" style="font-weight: bold; letter-spacing: 1px;font-size: small; margin-bottom: 10px;">
+                    TICKET BOOKED SUCCESSFULLY</div>
+                <!-- Date Information -->
+                <div class="date" style="font-size: x-small;">10 Monday 2025, 8:45 PM</div>
+
+                <hr style="height: 1px;
+            width: 100%;
+            border-width: 0;
+            color: rgb(224, 2, 2);
+            background-color: #3e3d3d2b;">
+                <!-- QR Code -->
+                <!-- <div class="qr-code"></div> -->
+
+                <!-- Timer Section -->
+                <div class="timer-container">
+                    <div class="title">Your ticket is valid for</div>
+                    <div class="timer" id="timer" style="font-size: 27px; margin-top: 10px;">02:30:00</div>
+                    <div class="timer" style="font-size: xx-small; font-weight: 100;margin-bottom: 10px;">
+                        HOURS                MINUTES                   SECONDS</div>
+
+                    <!-- View Ticket Button -->
+                    <button class="view-ticket">View Your Ticket</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="trip-details">
+            <h1>Trip Details</h1>
+
+            <div class="info">
+                <div class="heading">OPERATOR</div>
+                <div class="value">BRTS</div>
+            </div>
+
+            <div class="info">
+                <div class="heading">CHANGE OVER BUS STOP</div>
+                <div class="value">Iskcon Cross Road</div>
+            </div>
+
+            <div class="info">
+                <div class="order-id">Order ID: 12345678901<span
+                        style="padding-left: 3px; font-weight:300; color :#007bff;">copy</p></span>
+                </div>
+
+                <div class="info-note">
+                    For any queries regarding QR Ticket, please contact BRTS with Order ID.
+                </div>
+            </div>
+
+        </div>
+
+        <div class="payment-details">
+            <h1>Payment Details</h1>
+
+            <div class="info">
+                <div class="heading">FARE BREAKUP</div>
+                <div class="value">
+                    <span>1 X Adult</span>
+                    <span style="color: #333;" class="rupees">&#8377; 20</span>
+                </div>
+            </div>
+
+            <div class="info">
+                <div class="heading"></div>
+                <div class="value">
+                    <span>TOTAL</span>
+                    <span class="rupees">&#8377; 20</span>
+                </div>
+            </div>
+
+            <div class="info">
+                <div class="heading" style="padding-bottom: 5px;">PAYMENT MODE</div>
+                <div class="value" style="border: none;">
+                    <span style="flex-grow: 1;">UPI Linked Bank Account</span>
+                    <span style="color: #333; font-weight: bold;" class="rupees">&#8377; 20</span>
+                </div>
+                <div class="value" style="border: none;">
+                    <span style="font-size: small; color: #aaa;">Transaction ID:501009064222</span>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="empty" style="height: 80px;"></div>
+
+        <!-- Floating Island Section -->
+        <div class="floating">
+            <div class="floating-island">
+                <button onclick="alert('Home clicked!')">
+                    <img src="img/home.png" alt="Home">
+                    Home
+                </button>
+                <button onclick="alert('About clicked!')">
+                    <img class="acc" src="img/cashback.png" alt="About" style="width: 40px;
+            height: 40px;">
+                    Cashback
+                </button>
+                <button onclick="alert('Help clicked!')">
+                    <img src="img/contact.png" alt="Help">
+                    Help
+                </button>
+            </div>
+        </div>
+
+        <script>
+            let remainingTime = 2 * 60 * 60 + 30 * 60;
+             
+            function updateTimer() {
+        let timerElement = document.getElementById('timer');
+        const hours = String(Math.floor(remainingTime / 3600)).padStart(2, '0');
+        const minutes = String(Math.floor((remainingTime % 3600) / 60)).padStart(2, '0');
+        const seconds = String(remainingTime % 60).padStart(2, '0');
+
+        timerElement.textContent = `${hours} : ${minutes} : ${seconds}`;
+
+        if (remainingTime > 0) {
+            remainingTime--;
+        }
+    }
+
+    function updatePageFromQueryParams() {
+        const params = new URLSearchParams(window.location.search);
+
+        // Get values from query parameters
+        const from = params.get('from') || 'Default From';
+        const to = params.get('to') || 'Default To';
+        const time = params.get('time') || 'Default Time';
+        const rupee = params.get('rupee') || 'Default Price';
+
+        // Update the content of the elements with the values
+        const today = new Date();
+        let date = today.getDate();
+        let day = today.getDay();
+        const [hour, minute] = time.split(':');
+
+        // Calculate remaining time (in seconds)
+        remainingTime = parseInt(hour, 10) * 60 * 60 + parseInt(minute, 10) * 60;
+
+        setInterval(updateTimer, 1000);
+
+        // Display the day and time difference
+        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        let currentDate = new Date();
+        let currentHour = currentDate.getHours();    // Current hour (0-23)
+        let currentMinute = currentDate.getMinutes();
+        let currentTotalMinutes = (currentHour * 60) + currentMinute;
+        let givenTotalMinutes = (hour * 60) + minute;
+
+        // Calculate time difference in minutes
+        let lastM = currentTotalMinutes - givenTotalMinutes;
+        
+        // Handle negative difference (if current time is earlier than given time)
+        if (lastM < 0) {
+            lastM += 24 * 60; // Wrap around to next day
+        }
+
+        // Display time difference and date
+        let timep = `${date} ${dayNames[day]} ${today.getFullYear()}, ${lastM} minutes ago`;
+        document.getElementById('from').textContent = from;
+        document.getElementById('to').textContent = to;
+        document.querySelector('.date').textContent = timep;
+        document.querySelector('.rupee').innerHTML = `&#8377; ${rupee} <img src="img/check.png" alt="Check" style="width: 4vh;">`;
+
+        // Update all elements with the 'rupees' class
+        let a = document.getElementsByClassName('rupees');
+        for (let i = 0; i < a.length; i++) {
+            a[i].innerHTML = `&#8377; ${rupee}`;
+        }
+    }
+
+    // Call the function when the page loads
+    window.onload = updatePageFromQueryParams;
+        </script>
+</body>
+
+</html>

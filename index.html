@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <input type="text" id="from" placeholder="From">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" id="to" placeholder="To">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="time" id="st">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="number" id="rupee">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button onclick="foo()">Submit</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        function foo() {
+            let from = document.getElementById('from').value;
+            let to = document.getElementById('to').value;
+            let time = document.getElementById('st').value;
+            let rupee = document.getElementById('rupee').value
+
+            // Redirect to next.html with query parameters
+            window.location.href = `next.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}`;
+        }
+    </script>
+</body>
+</html>
