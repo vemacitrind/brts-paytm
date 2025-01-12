@@ -445,72 +445,84 @@
 
         <script>
             let remainingTime = 2 * 60 * 60 + 30 * 60;
-             
+
             function updateTimer() {
-        let timerElement = document.getElementById('timer');
-        const hours = String(Math.floor(remainingTime / 3600)).padStart(2, '0');
-        const minutes = String(Math.floor((remainingTime % 3600) / 60)).padStart(2, '0');
-        const seconds = String(remainingTime % 60).padStart(2, '0');
+                let timerElement = document.getElementById('timer');
+                const hours = String(Math.floor(remainingTime / 3600)).padStart(2, '0');
+                const minutes = String(Math.floor((remainingTime % 3600) / 60)).padStart(2, '0');
+                const seconds = String(remainingTime % 60).padStart(2, '0');
 
-        timerElement.textContent = `${hours} : ${minutes} : ${seconds}`;
+                timerElement.textContent = `${hours} : ${minutes} : ${seconds}`;
 
-        if (remainingTime > 0) {
-            remainingTime--;
-        }
-    }
+                if (remainingTime > 0) {
+                    remainingTime--;
+                }
+            }
 
-    function updatePageFromQueryParams() {
-        const params = new URLSearchParams(window.location.search);
+            function updatePageFromQueryParams() {
+                const params = new URLSearchParams(window.location.search);
 
-        // Get values from query parameters
-        const from = params.get('from') || 'Default From';
-        const to = params.get('to') || 'Default To';
-        const time = params.get('time') || 'Default Time';
-        const rupee = params.get('rupee') || 'Default Price';
+                const from = params.get('from') || 'Default From';
+                const to = params.get('to') || 'Default To';
+                const time = params.get('time') || '00:00'; // Default to "00:00" for invalid/missing time
+                const rupee = params.get('rupee') || 'Default Price';
 
-        // Update the content of the elements with the values
-        const today = new Date();
-        let date = today.getDate();
-        let day = today.getDay();
-        const [hour, minute] = time.split(':');
+                let remainingTime;
+                try {
+                    // Parse time input
+                    const [hour, minute] = time.split(':').map(Number);
+                    if (isNaN(hour) || isNaN(minute)) {
+                        throw new Error('Invalid time format');
+                    }
+                    remainingTime = hour * 60 * 60 + minute * 60;
 
-        // Calculate remaining time (in seconds)
-        remainingTime = parseInt(hour, 10) * 60 * 60 + parseInt(minute, 10) * 60;
+                    // Start timer (if needed)
+                    setInterval(updateTimer, 1000);
 
-        setInterval(updateTimer, 1000);
+                    // Calculate current time - (fix time - input time)
+                    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+                    const currentTime = new Date();
 
-        // Display the day and time difference
-        const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        let currentDate = new Date();
-        let currentHour = currentDate.getHours();    // Current hour (0-23)
-        let currentMinute = currentDate.getMinutes();
-        let currentTotalMinutes = (currentHour * 60) + currentMinute;
-        let givenTotalMinutes = (hour * 60) + minute;
+                    const fixTime = new Date();
+                    fixTime.setHours(3, 0, 0, 0); // Fix time is 03:00
 
-        // Calculate time difference in minutes
-        let lastM = currentTotalMinutes - givenTotalMinutes;
-        
-        // Handle negative difference (if current time is earlier than given time)
-        if (lastM < 0) {
-            lastM += 24 * 60; // Wrap around to next day
-        }
+                    const inputTime = new Date();
+                    inputTime.setHours(hour, minute, 0, 0);
 
-        // Display time difference and date
-        let timep = `${date} ${dayNames[day]} ${today.getFullYear()}, ${lastM} minutes ago`;
-        document.getElementById('from').textContent = from;
-        document.getElementById('to').textContent = to;
-        document.querySelector('.date').textContent = timep;
-        document.querySelector('.rupee').innerHTML = `&#8377; ${rupee} <img src="img/check.png" alt="Check" style="width: 4vh;">`;
+                    const diffInMilliseconds = fixTime - inputTime;
+                    const resultTime = new Date(currentTime - diffInMilliseconds);
 
-        // Update all elements with the 'rupees' class
-        let a = document.getElementsByClassName('rupees');
-        for (let i = 0; i < a.length; i++) {
-            a[i].innerHTML = `&#8377; ${rupee}`;
-        }
-    }
+                    // Format result time in hh:mm
+                    const resultHours = resultTime.getHours().toString().padStart(2, "0");
+                    const resultMinutes = resultTime.getMinutes().toString().padStart(2, "0");
+                    const formattedResult = `${resultHours}:${resultMinutes}`;
 
-    // Call the function when the page loads
-    window.onload = updatePageFromQueryParams;
+                    // Get today's date
+                    const today = new Date();
+                    const day = today.getDay();
+                    const date = today.toLocaleDateString();
+
+                    // Construct time display string
+                    const timep = `${date} ${dayNames[day]} ${today.getFullYear()}, ${formattedResult} AM`;
+
+                    // Update UI elements
+                    document.getElementById('from').textContent = from;
+                    document.getElementById('to').textContent = to;
+                    document.querySelector('.date').textContent = timep;
+                    document.querySelector('.rupee').innerHTML = `&#8377; ${rupee} <img src="img/check.png" alt="Check" style="width: 4vh;">`;
+
+                    // Update all elements with the 'rupees' class
+                    const elements = document.getElementsByClassName('rupees');
+                    for (let i = 0; i < elements.length; i++) {
+                        elements[i].innerHTML = `&#8377; ${rupee}`;
+                    }
+                } catch (error) {
+                    console.error('Error in updatePageFromQueryParams:', error);
+                }
+            }
+
+            // Call the function when the page loads
+            window.onload = updatePageFromQueryParams;
         </script>
 </body>
 
