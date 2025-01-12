@@ -4,28 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #myForm {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+        table {
+            width: 100%;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <form id="myForm" onsubmit="foo(event)">
         <table>
             <tr>
                 <td>
-                    <input type="text" id="from" placeholder="From" required>
+                    <input type="text" id="from" placeholder="Enter start location (From)" required>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" id="to" placeholder="To" required>
+                    <input type="text" id="to" placeholder="Enter destination (To)" required>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="time" id="st" max="03:00" required>
+                    <input type="time" id="st" placeholder="Select start time" max="03:00" required>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <input type="number" id="rupee" required>
+                    <input type="number" id="rupee" placeholder="Enter amount (₹)" required>
                 </td>
             </tr>
             <tr>
