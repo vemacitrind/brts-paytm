@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Ticket Layout</title>
+    <title>Brts - Paytm</title>
     <style>
         body {
             margin: 0;
@@ -33,7 +33,7 @@
 
         .apk-logo {
             width: 100px;
-            height: 40px;
+            height: 50px;
             display: inline-block;
             text-align: center;
             line-height: 50px;
@@ -459,24 +459,26 @@
                 }
             }
 
+            document.querySelector(".view-ticket").addEventListener("click", function() {
+                const params = new URLSearchParams(window.location.search);
+                window.location.href = `next2.html?${params.toString()}`;
+            });
+
+
             function updatePageFromQueryParams() {
                 const params = new URLSearchParams(window.location.search);
 
                 const from = params.get('from') || 'Default From';
                 const to = params.get('to') || 'Default To';
-                const time = params.get('time') || '00:00'; // Default to "00:00" for invalid/missing time
+                const time = params.get('time') ;
                 const rupee = params.get('rupee') || 'Default Price';
 
-                let remainingTime;
                 try {
                     // Parse time input
                     const [hour, minute] = time.split(':').map(Number);
-                    if (isNaN(hour) || isNaN(minute)) {
-                        throw new Error('Invalid time format');
-                    }
+                    
                     remainingTime = hour * 60 * 60 + minute * 60;
 
-                    // Start timer (if needed)
                     setInterval(updateTimer, 1000);
 
                     // Calculate current time - (fix time - input time)
@@ -521,7 +523,6 @@
                 }
             }
 
-            // Call the function when the page loads
             window.onload = updatePageFromQueryParams;
         </script>
 </body>
