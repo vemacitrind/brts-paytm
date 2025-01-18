@@ -52,7 +52,10 @@ body {
     padding: 20px;
     margin: 10px;
 }
-
+.white{
+    padding: 20px;
+    margin: 10px;
+}
 .qr-container {
     display: flex;
     flex-direction: column;
