@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-image: 
+                linear-gradient(rgba(70, 89, 119, 0.5), rgba(141, 77, 136, 0.5)), url('img/bgimg.png');
+            background-size: 150px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -52,9 +54,17 @@
         button:hover {
             background: #0056b3;
         }
+        .white{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+        }
+        
     </style>
 </head>
 <body>
+    <div class="white" style="width: 360px;height: 780px;">
     <form id="myForm" onsubmit="foo(event)">
         <table>
             <tr>
@@ -84,6 +94,7 @@
             </tr>
         </table>
     </form>
+</div>
     <script>
         function foo(event) {
             // Prevent the form's default submission behavior

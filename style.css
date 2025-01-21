@@ -2,6 +2,9 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     display: flex;
+    background-image: 
+                linear-gradient(rgba(70, 89, 119, 0.5), rgba(141, 77, 136, 0.5)), url('img/bgimg.png');
+            background-size: 150px;
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -42,6 +45,7 @@ body {
 }
 
 .scrollable {
+    background: white;
     flex-grow: 1;
     overflow-y: auto;
 }
