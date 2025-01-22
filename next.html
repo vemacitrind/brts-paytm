@@ -205,10 +205,10 @@
                     // Get today's date
                     const today = new Date();
                     const day = today.getDay();
-                    const date = today.toLocaleDateString();
+                    const date = today.getDate();
 
                     // Construct time display string
-                    const timep = `${date} ${dayNames[day]} ${today.getFullYear()}, ${formattedResult} AM`;
+                    const timep = `${date} ${dayNames[day]} ${today.getFullYear()}, ${formattedResult}`;
 
                     // Update UI elements
                     document.getElementById('from').textContent = from;
