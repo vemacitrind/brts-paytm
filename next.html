@@ -7,11 +7,12 @@
     <title>Brts - Paytm</title>
     <link rel="stylesheet" href="style.css">
    
-    <script>
-        const button = document.getElementById("fs-btn");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const button = document.getElementById("fullscreen-btn");
 
         button.addEventListener("click", () => {
-            const element = document.documentElement; // The whole document
+            const element = document.documentElement; // The entire page
 
             if (element.requestFullscreen) {
                 element.requestFullscreen();
@@ -23,7 +24,8 @@
                 element.msRequestFullscreen();
             }
         });
-    </script>
+    });
+</script>
 </head>
 
 <body>
