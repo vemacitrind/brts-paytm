@@ -6,20 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>Brts - Paytm</title>
     <link rel="stylesheet" href="style.css">
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const element = document.documentElement; // The entire document
-        if (element.requestFullscreen) {
-            element.requestFullscreen();
-        } else if (element.mozRequestFullScreen) { // For Firefox
-            element.mozRequestFullScreen();
-        } else if (element.webkitRequestFullscreen) { // For Chrome, Safari, and Opera
-            element.webkitRequestFullscreen();
-        } else if (element.msRequestFullscreen) { // For IE/Edge
-            element.msRequestFullscreen();
-        }
-    });
-</script>
+    <script>
+    window.onload = function () {
+    updatePageFromQueryParams();
+
+    // Request fullscreen mode when the page loads
+    const element = document.documentElement; // The entire page
+    if (element.requestFullscreen) {
+        element.requestFullscreen().catch((err) => {
+            console.error(`Error attempting to enable fullscreen: ${err.message}`);
+        });
+    } else if (element.mozRequestFullScreen) { // For Firefox
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { // For Chrome, Safari, Opera
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { // For IE/Edge
+        element.msRequestFullscreen();
+    }
+};</script>
 </head>
 
 <body>
