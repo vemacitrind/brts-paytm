@@ -7,23 +7,24 @@
     <title>Brts - Paytm</title>
     <link rel="stylesheet" href="style.css">
     <script>
-    window.onload = function () {
-    updatePageFromQueryParams();
-
-    // Request fullscreen mode when the page loads
-    const element = document.documentElement; // The entire page
-    if (element.requestFullscreen) {
-        element.requestFullscreen().catch((err) => {
-            console.error(`Error attempting to enable fullscreen: ${err.message}`);
-        });
-    } else if (element.mozRequestFullScreen) { // For Firefox
-        element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) { // For Chrome, Safari, Opera
-        element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) { // For IE/Edge
-        element.msRequestFullscreen();
-    }
-};</script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Check if the document is already in fullscreen
+        if (!document.fullscreenElement) {
+            const element = document.documentElement; // The entire document
+            if (element.requestFullscreen) {
+                element.requestFullscreen().catch((err) => {
+                    console.error(`Error attempting to enable fullscreen: ${err.message}`);
+                });
+            } else if (element.mozRequestFullScreen) { // For Firefox
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { // For Chrome, Safari, Opera
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // For IE/Edge
+                element.msRequestFullscreen();
+            }
+        }
+    });
+    </script>
 </head>
 
 <body>
