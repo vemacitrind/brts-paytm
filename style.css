@@ -1,7 +1,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    display: flex;
+    display: flex;
+
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -254,14 +255,18 @@ body {
 
 .lalala {
     position: absolute;
-    top: 80px;
+    top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    width: 300px;
-    height: 500px;
+    width: 280px;
+    height: 580px;
     z-index: 1;
     background-image: url(img/qrcode.png);
     background-size: 100px auto;
     background-repeat: repeat;
     visibility: hidden;
+    border-radius: 2cap;
+    border: 2px solid #007bff;
+    padding: 10px;
+    
 }
