@@ -197,9 +197,11 @@
           </div>
         <script>
             let remainingTime = 2 * 60 * 60 + 30 * 60;
-            window.onload = function () {
-                document.getElementById("loader").style.display = "none";
-            };
+            document.addEventListener("visibilitychange", function () {
+                if (document.visibilityState === "visible") {
+                    document.getElementById("loader").style.display = "none";
+                }
+            });
             function updateTimer() {
                 let timerElement = document.getElementById('timer');
                 const hours = String(Math.floor(remainingTime / 3600)).padStart(2, '0');
