@@ -127,16 +127,16 @@
 
         <div class="floating">
             <div class="floating-island">
-                <button onclick="alert('Home clicked!')">
+                <button>
                     <img src="img/home.png" alt="Home">
                     Home
                 </button>
-                <button onclick="alert('About clicked!')">
+                <button>
                     <img class="acc" src="img/cashback.png" alt="About" style="width: 40px;
             height: 40px;">
                     Cashback
                 </button>
-                <button onclick="alert('Help clicked!')">
+                <button>
                     <img src="img/contact.png" alt="Help">
                     Help
                 </button>
@@ -211,7 +211,7 @@
                     // Get today's date
                     const today = new Date();
                     const day = today.getDay();
-                    const date = today.toLocaleDateString();
+                    const date = today.getDate();
 
                     // Construct time display string
                     const timep = `${date} ${dayNames[day]} ${today.getFullYear()}, ${formattedResult} AM`;
