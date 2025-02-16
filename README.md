@@ -5,7 +5,7 @@ This project is a clone of the Paytm BRTS (Bus Rapid Transit System) Booking ser
 ## Preview
 
 You can preview the live project at:  
-[Live Demo](https://joshivedant7.github.io/brts-paytm/index.html)
+[Live Demo](https://vemacitrind.github.io/brts-paytm/index.html)
 
 ## Technologies Used
 - **HTML** 
