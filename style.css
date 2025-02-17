@@ -59,7 +59,15 @@ body {
     padding: 20px;
     margin: 10px;
 }
+
+.qrcode{
+    display: none;
+    width: 80%; 
+    margin: 10px 0px ;
+}
+
 .white{
+    /* display: none; */
     padding: 20px;
     margin: 10px;
 }
