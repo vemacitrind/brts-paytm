@@ -1,231 +1,47 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+:root{
+    --blue-color :#00b9f1;
 }
-body {
-    -webkit-user-select: none; /* For Safari and Chrome */
-    -moz-user-select: none;    /* For Firefox */
-    -ms-user-select: none;     /* For IE */
-    user-select: none;         /* Standard */
-}
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #f1f1f1;
-}
-
-.back-button {
-    background-color: transparent;
-    border: none;
-    height: 5vh;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.apk-logo {
-    width: 100px;
-    height: 50px;
-    display: inline-block;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 5px;
-}
-
-.apk-logo img {
-    margin-top: 10px;
-    width: 85%;
-}
-
-.help {
-    color: #007bff;
-}
-
-.scrollable {
-    background: white;
-    flex-grow: 1;
-    overflow-y: auto;
-}
-
-.bluecontainer {
-    background-image: linear-gradient(#dcf7fa 97%, #00B9F1 97% 98.5%, #002E6E 98.5% 100%);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 10px;
-}
-
-.qrcode{
-    display: none;
-    width: 80%; 
-    margin: 10px 0px ;
-}
-
-.white{
-    /* display: none; */
-    padding: 20px;
-    margin: 10px;
-}
-.qr-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.location {
-    display: flex;
-    align-items: center;
-    padding-bottom: 0px;
-    color: black;
-}
-
-.info1 {
-    margin: 2px 0px 5px 0px;
-}
-
-.passenger-info {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 4cap;
-    padding: 5px;
-    font-size: large;
-    font-weight: bolder;
-    margin: 10px 0;
-    padding-right: 10px;
-}
-
-.rupee {
-    font-size: 30px;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.date {
-    font-size: 16px;
-    margin: 10px 0;
-}
-
-.qr-code {
-    width: 200px;
-    height: 200px;
-    background-color: white;
-    margin-bottom: 20px;
-}
-
-.timer {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.view-ticket {
-    margin-top: 10px;
-    padding: 10px 20px;
-    border: none;
-    background-color: #00B9F1;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 90%;
-    margin-bottom: 10px;
-}
-
-.view-ticket:hover {
-    background-color: darkblue;
-}
-
-.info {
-    color: rgb(33, 33, 33);
+.fs-sm{
     font-size: small;
 }
-
-.timer-container {
-    margin: 10px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    background-color: white;
+.person{
+    border-radius: 2rem;
+    border: 1px solid #d7c5c563;
+    position: relative;
+}
+#count{
+    position: absolute;
+    right: 45%;
+}
+#view-ticket{
+    background: var(--blue-color);
+}
+.semicolon{
+    position: relative;
+}
+.semicolon::after{
+    content: ":";
+    position: absolute;
+    left: 100%;
+}
+    #loader {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    margin-bottom: 20px;
-    border-radius: 1cap;
+    height: 100%;
+    background: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
-
-.title {
-    margin: 10px 0px;
-    font: small;
-}
-
-.trip-details, .payment-details {
-    padding: 15px;
-    margin: 10px;
-    border: 1px solid gray;
-    border-radius: 0.5cap;
-    background-color: #fff;
-}
-
-.trip-details h1, .payment-details h1 {
-    margin: 0 0 20px;
-    font-size: medium;
-    font-weight: bold;
-    color: #333;
-}
-
-.info .heading {
-    font-size: small;
-    font-weight: 500;
-    color: #aaa;
-    margin-bottom: 5px;
-}
-
-.info .value {
-    font-size: small;
-    color: #333;
-    padding-bottom: 10px;
-    border-bottom: 1px solid gray;
-    display: flex;
-    justify-content: space-between;
-}
-
-.copy-section .order-id {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-.copy-section button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.copy-section button:hover {
-    background-color: #0056b3;
-}
-
-.info-note {
-    font-size: xx-small;
-    color: #000000;
-    margin-top: 10px;
-    line-height: 1.5;
-}
-
 .floating {
     position: fixed;
     top: 90%;
     left: 50%;
     transform: translateX(-50%);
 }
-
 .floating-island {
     display: inline-flex;
     padding: 0 20px;
@@ -233,7 +49,6 @@ body {
     border-radius: 4cap;
     background: #002E6E;
 }
-
 .floating-island button {
     display: flex;
     flex-direction: column;
@@ -249,32 +64,28 @@ body {
     font-size: small;
     text-align: center;
 }
-
 .floating-island button:hover {
     background-color: #0056b3;
 }
-
 .floating-island img:not(.acc) {
     width: 20px;
     height: 20px;
     margin-bottom: 5px;
     filter: invert(100%) contrast(100%);
 }
-
-.lalala {
+.qr-grid {
     position: absolute;
     top: 50px;
     left: 50%;
     transform: translateX(-50%);
-    width: 280px;
+    width: 305px;
     height: 580px;
     z-index: 1;
-    background-image: url(img/qrcode.png);
+    background-image: url(/assets/qrcode.png);
     background-size: 100px auto;
     background-repeat: repeat;
     visibility: hidden;
     border-radius: 2cap;
     border: 2px solid #007bff;
     padding: 10px;
-    
 }

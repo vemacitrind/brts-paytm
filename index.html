@@ -1,113 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brts - Paytm</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-image: 
-                linear-gradient(rgba(70, 89, 119, 0.5), rgba(141, 77, 136, 0.5)), url('img/bgimg.png');
-            background-size: 150px;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            background-image: linear-gradient(rgba(70, 89, 119, 0.5), rgba(141, 77, 136, 0.5)), url('/assets/bgimg.png');
+            background-size: 150px;
             margin: 0;
+            font-family: Arial, sans-serif;
         }
+
         #myForm {
             background: #ffffff;
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 300px;
+            width: 400px;
         }
-        table {
-            width: 100%;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-        .white{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: white;
-        }
-        
     </style>
 </head>
+
 <body>
-    <div class="white" style="width: 360px;height: 780px;">
-    <form id="myForm" onsubmit="foo(event)">
-        <table>
-            <tr>
-                <td>
-                    <input type="text" id="from" placeholder="Enter start location (From)" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="text" id="to" placeholder="Enter destination (To)" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="time" id="st" placeholder="Select start time" max="03:00" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="number" id="rupee" placeholder="Enter amount (₹)" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit">Submit</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+
+    <div class="container d-flex justify-content-center align-item-center">
+        <form id="myForm" onsubmit="foo(event)">
+            <div class="mb-3">
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="service" id="brts" value="BRTS" required checked>
+                    <label class="btn btn-outline-primary" for="brts">BRTS</label>
+                    <input type="radio" class="btn-check" name="service" id="amts" value="AMTS" required>
+                    <label class="btn btn-outline-primary" for="amts">AMTS</label>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" id="from" placeholder="Enter Start Location" list="from-list"
+                    required>
+                <datalist id="from-list"></datalist>
+            </div>
+
+            <div class="mb-3">
+                <input type="text" class="form-control" id="to" placeholder="Enter Destination" list="to-list" required>
+                <datalist id="to-list"></datalist>
+            </div>
+
+            <div class="mb-3">
+                <input type="time" class="form-control" id="st" max="03:00" required>
+            </div>
+
+            <div class="mb-3">
+                <input type="number" class="form-control" id="countP" placeholder="Number of Ticket (Default 1)" value="1" min="1">
+            </div>
+
+            <div class="mb-3">
+                <input type="number" class="form-control" id="rupee" placeholder="Enter Amount (₹)" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const locations = ["Ajit Mill Char Rasta","Akhbarnagar","Ambli Gam","Andhjan Mandal","Anjali","Antariksh Colony","Arvind Mill","Ashok Mill","Ashok Vatika","Astodiya Chakala","Astodiya Darwaja",
+            "Bapu Nagar Approach","Bethak","Bhadaj Circle","Bhairavnath Road","Bhavsar Hostel","Bhavya Park","Bhulabhai Park","Bhuyangdev","Bopal Approach","Bopal Gam","BRTS Workshop",
+            "Chandkheda Gam","Chandola Lake","Chandranagar","Chhipa Society","Chhotalal ni Chali","Commerce Six Road","CTM Cross Road",
+            "Danilimda Char Rasta","Danilimda Road","DCIS Circle","Delhi Darwaja","Dhanush Dhari Mandir","Dharnidhar Derasar",
+            "Express Highway Junction",
+            "G.C.S. Hospital","Geeta Gauri Cinema","Geeta Mandir","Ghodasar","Ghuma Gam","Gota Cross Road","Grid Station","Gujarat High Court","Gulbai Tekra Approach","Gurudwara",
+            "Hanumanpura","Hatkeshwar","Hetarth Party Plot","Himmatlal Park","Hirawadi",
+            "Isanpur","Iskcon Cross Road","Iskcon mandir","ISRO",
+            "Jaimangal","Jantanagar","Jashodanagar Char Rasta","Jawahar Chowk","Jayantilal Park","Jeening Press","Jhansi Ki Rani","Jodhpur Char Rasta","Jogeshwari Society","Juna Vadaj",
+            "Kalupur","Kalupur Ghee Bazar","Kankariya Lake Shukla Dada Chawk","Kankariya Telephone Exchange","Karnamukteshwar Mahadev","Kashiram Textiles","Khodiyarnagar","Krishna nagar",
+            "L Colony","Law Garden","LD Engg. College","Lilanagar","Little Wings","Lokamanya Tilak Bag",
+            "M J Library","Manekbaug","Mangal Park","Maninagar","Maninagar Char Rasta","Memco Cross Road","Memnagar","Mira Cinema Char Rasta","Morlidhar Society","Motera Cross Road","Mukesh Industries","Municipal Corporation Office","Municipal North Zone Office",
+            "N R Patel Park","Narayana Hospital","Naroda Fruit Market","Naroda Gam","Naroda S. T. Workshop","Narol","Nehrunagar",
+            "Odhav Fire Station","Odhav Talav","ONGC Avani Bhavan",
+            "Panjrapole Char Rasta","Parasnagar","Parshwanath Jain Mandir","Patel Mills","Pragatinagar","Prem Darwaja","Purvdeep Society",
+            "R.T.O Circle","R.T.O Extension","Rabari Colony","Raikhad Char Rasta","Raipur Darwaja","Rakhiyal Char Rasta","Ram Rajya Nagar","Ramapir No Tekaro","Rambaug","Ramdevnagar","Rameshwar Park","Ranip Cross Road","Rathi Apartment",
+            "Sabarmati Municipal Swimming pool","Sabarmati Police station","Sabarmati power house","Saijpur Towers","Samarpan Bungalows","Sarangpur Darwaja","Sarkari Litho Press","Sarkari Litho Press Cabin","Sarthi Bungalows","Sattadhar Char Rasta","Sanand Circle","Science City","Science City Approach","Shastrinagar","Shiv Shaktinagar","Shivranjani","Shree Valinath Chowk","Shukan Mall","Sola Bhagwat","Sola Bridge","Sola Cross Road","Soma Textiles","Soni ni Chali","SP Ring Road Approach","Star Bazaar","Sterling City","Swagat Bungalow","Swaminarayan College","Swaminarayan Mandir","Thakkar Nagar Approach",
+            "University",
+            "Vaikunth Dham Mandir","Vallabh Nagar","Vasna","Vasundhara Society","Vijay Park","Viratnagar","Visat - Gandhinagar Junction","Vishvkarma Engineering College"];
+
+        function populateDataList(id) {
+            const dataList = document.getElementById(id);
+            locations.forEach((location) => {
+                let option = document.createElement("option");
+                option.value = location;
+                dataList.appendChild(option);
+            });
+        }
+
+        window.onload = function () {
+            populateDataList("from-list");
+            populateDataList("to-list");
+        };
+
+        function foo(event) {
+            event.preventDefault();
+            alert("Form Submitted Successfully!");
+        }
+    </script>
+
+
     <script>
         function foo(event) {
-            // Prevent the form's default submission behavior
             event.preventDefault();
 
             let from = document.getElementById('from').value;
             let to = document.getElementById('to').value;
             let time = document.getElementById('st').value;
             let rupee = document.getElementById('rupee').value;
+            let countP = document.getElementById('countP').value;
 
-            // Redirect to next.html with query parameters
-            window.location.href = `first.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}`;
+            window.location.href = `src/brts-ticket.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}&number=${encodeURIComponent(countP)}`;
         }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

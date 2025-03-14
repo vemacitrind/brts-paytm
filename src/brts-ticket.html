@@ -5,100 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
     <title>Brts - Paytm</title>
-    <!-- <link rel="stylesheet" href="style.css"> -->
-    <style>
-        :root{
-        --blue-color :#00b9f1;
-    }
-    .fs-sm{
-        font-size: small;
-    }
-    .person{
-        border-radius: 2rem;
-        border: 1px solid #d7c5c563;
-        position: relative;
-    }
-    #count{
-        position: absolute;
-        right: 45%;
-    }
-    #view-ticket{
-        background: var(--blue-color);
-    }
-    .semicolon{
-        position: relative;
-    }
-    .semicolon::after{
-        content: ":";
-        position: absolute;
-        left: 100%;
-    }
-        #loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: white;
-        display: none;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-    .floating {
-        position: fixed;
-        top: 90%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .floating-island {
-        display: inline-flex;
-        padding: 0 20px;
-        gap: 10px;
-        border-radius: 4cap;
-        background: #002E6E;
-    }
-
-    .floating-island button {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 60px;
-        height: 60px;
-        border: none;
-        border-radius: 30px;
-        background-color: transparent;
-        color: #fff;
-        cursor: pointer;
-        font-size: small;
-        text-align: center;
-    }
-
-    .floating-island button:hover {
-        background-color: #0056b3;
-    }
-
-    .floating-island img:not(.acc) {
-        width: 20px;
-        height: 20px;
-        margin-bottom: 5px;
-        filter: invert(100%) contrast(100%);
-    }
-    </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/src/style.css">
 </head>
-<style>
-    
-</style>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <!-- <button class="btn" type="button"> -->
-            <i class="bi bi-arrow-left-short fs-1"></i>
+            <i class="bi bi-arrow-left-short fs-1" role="button" id="back-button"></i>
           <!-- </button> -->
           
           <a class="navbar-brand mx-auto" href="#">
@@ -112,9 +28,9 @@
     </nav>
 
     <div class="container-fluid m-0 p-3">
-        <div class="container-fluid rounded-2 p-3" style="background-image: linear-gradient(#dcf7fa 96%, #00B9F1 96% 98%, #002E6E 98% 100%);">
+        <div id="colorContainer" class="container-fluid rounded-2 p-3">
             <!-- Logo -->
-            <div class="row">
+            <div class="row disappear">
                 <div class="col-12 d-flex justify-content-center">
                     <img src="../assets/janmitra-logo.png" alt="janmitra-logo" class="rounded-pill" height="70">
                 </div>
@@ -125,12 +41,12 @@
                 <div class="col-2 d-flex align-items-center justify-content-center"><i class="bi bi-arrow-right-short fs-1"></i></div>
                 <div class="col-5 d-flex align-items-center justify-content-start p-0 fw-bold fs-4" id="to">Khokhara ...</div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3 disappear">
                 <div class="col-12 text-center fs-sm mb-1">AC</div>
                 <div class="col-12 text-center fs-sm">1 Adult Ticket</div><!--Count will be added here-->
             </div>
             <!-- person -->
-            <div class="row mb-3">
+            <div class="row mb-3 disappear">
                 <div class="col-12 d-flex justify-content-center align-items-center">
                     <img src="../assets/person.png" class="person" alt="" width="70">
                     <span id="count" class="fw-semibold fs-4">1</span>
@@ -138,11 +54,11 @@
             </div>
             <!-- money & Date Time -->
             <div class="row">
-                <div class="col-12 d-flex align-items-center justify-content-center fw-bold rupee" style="font-size: xx-large;">
+                <div class="col-12 d-flex align-items-center justify-content-center fw-bold rupee disappear" style="font-size: xx-large;">
                     &#x20B9; 20 
                     <img class="ms-1" src="assets/image.png" alt="" height="35">
                 </div>
-                <div class="col-12 text-center fw-bold mb-1">
+                <div class="col-12 d-flex justify-content-center fw-bold mb-1 disappear">
                     TICKET BOOKED SUCCESSFULLY
                 </div>
                 <div class="col-12 text-center" id="date-time">
@@ -150,6 +66,12 @@
                 </div>
             </div>
             
+            <div class="row appear">
+                <div class="col">
+                    <img src="/assets/qrcode.png" class="w-100 p-3" onclick="visibilityToggle()">
+                </div>
+            </div>
+
             <hr style="height: 1px;width: 100%;border-width: 0;color: rgb(224, 2, 2);background-color: #3e3d3d9e;">
 
             <div class="container-fluid bg-light rounded-4 p-3 mb-3">
@@ -173,6 +95,9 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="qr-grid" onclick="visibilityToggle()">
     </div>
     
     <div class="container m-0 px-3 pt-2 mb-5">
@@ -260,94 +185,8 @@
         </circle>
         </svg>
     </div>
-    <script src="script.js"></script>
 
-<script>
-    function getParams() {
-        const params = new URLSearchParams(window.location.search);
-        return {
-            from: params.get('from') || "N/A",
-            to: params.get('to') || "N/A",
-            time: params.get('time') || "00:00",
-            rupee: params.get('rupee') || "0",
-            number: params.get('number') || "1"
-        };
-    }
-    
-    function trimText(text, maxLength = 10) {
-        return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
-    }
-
-    function subtractTime(givenTime) {
-        const now = new Date();
-
-        const [givenHours, givenMinutes] = givenTime.split(":").map(Number);
-        const givenDate = new Date();
-        givenDate.setHours(givenHours, givenMinutes, 0, 0);
-
-        const differenceMs = now - givenDate;
-
-        const diffHours = Math.floor(differenceMs / (1000 * 60 * 60));
-        const diffMinutes = Math.floor((differenceMs % (1000 * 60 * 60)) / (1000 * 60));
-        const diffSeconds = Math.floor((differenceMs % (1000 * 60)) / 1000);
-
-        return `${Math.abs(diffHours)}:${Math.abs(diffMinutes)}`;
-    }
-
-    window.onload = function () {
-        let hours = 2;
-        let minutes = 30;
-        let seconds = 0;
-        const { from, to, time, rupee, number } = getParams();
-
-        document.getElementById('from').textContent = trimText(from);
-        document.getElementById('to').textContent = trimText(to);
-        document.getElementById('count').textContent = number;
-
-        document.querySelectorAll('.rupee').forEach(el => {
-            el.innerHTML = `&#x20B9; ${rupee}`;
-        });
-
-        hours = parseInt(time.split(':')[0] || "00");
-        minutes = parseInt(time.split(':')[1] || "00");
-
-        const now = new Date();
-        const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-        final = `${now.getDate()} ${weekdays[now.getDay()]} ${now.getFullYear()}, ${subtractTime(time)}`;
-        document.getElementById("date-time").innerHTML = final ;
-
-        length = 11
-        document.querySelector('.order-id').innerHTML = "Order ID: "+(Math.floor(Math.random() * Math.pow(10, length)).toString().padStart(length, '0'))+`<span class="ms-1" style="color: var(--blue-color);" role="button">copy</span>`;
-        document.querySelector('.transaction-id').innerHTML = "Transaction ID: "+(Math.floor(Math.random() * Math.pow(10, length)).toString().padStart(length, '0'));
-
-
-        let timer = setInterval(() => {
-            if (seconds === 0) {
-            if (minutes === 0) {
-                if (hours === 0) {
-                clearInterval(timer);
-                console.log("Timer Finished");
-                return;
-                }
-                hours--;
-                minutes = 59;
-            } else {
-                minutes--;
-            }
-            seconds = 59;
-            } else {
-            seconds--;
-            }
-
-            document.querySelectorAll(".col-4")[0].innerText = hours.toString().padStart(2, "0");
-            document.querySelectorAll(".col-4")[1].innerText = minutes.toString().padStart(2, "0");
-            document.querySelectorAll(".col-4")[2].innerText = seconds.toString().padStart(2, "0");
-
-        }, 1000);
-    };
-
-</script>
+<script src="/src/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
