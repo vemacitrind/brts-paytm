@@ -35,7 +35,7 @@
         <form id="myForm" onsubmit="foo(event)">
             <div class="mb-3">
                 <div class="btn-group w-100" role="group">
-                    <input type="radio" class="btn-check" name="service" id="brts" value="BRTS" required checked>
+                    <input type="radio" class="btn-check" name="service" id="brts" value="BRTS" required>
                     <label class="btn btn-outline-primary" for="brts">BRTS</label>
                     <input type="radio" class="btn-check" name="service" id="amts" value="AMTS" required>
                     <label class="btn btn-outline-primary" for="amts">AMTS</label>
@@ -113,16 +113,23 @@
 
     <script>
         function foo(event) {
-            event.preventDefault();
+        event.preventDefault();
+        const selectedService = document.querySelector('input[name="service"]:checked').value;
 
-            let from = document.getElementById('from').value;
-            let to = document.getElementById('to').value;
-            let time = document.getElementById('st').value;
-            let rupee = document.getElementById('rupee').value;
-            let countP = document.getElementById('countP').value;
+        const from = document.getElementById('from').value;
+        const to = document.getElementById('to').value;
+        const time = document.getElementById('st').value;
+        const rupee = document.getElementById('rupee').value;
+        const countP = document.getElementById('countP').value;
 
+        console.log(`Selected service: ${selectedService}`); // Debugging check
+
+        if (selectedService === "BRTS") {
             window.location.href = `src/brts-ticket.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}&number=${encodeURIComponent(countP)}`;
+        } else if (selectedService === "AMTS") {
+            window.location.href = `src/amts-ticket.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}&number=${encodeURIComponent(countP)}`;
         }
+    }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
