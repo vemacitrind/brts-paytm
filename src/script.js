@@ -22,15 +22,22 @@ function subtractTime(givenTime) {
     const givenDate = new Date();
     givenDate.setHours(givenHours, givenMinutes, 0, 0);
 
-    const differenceMs = now - givenDate;
+    // 3:00 AM as reference time
+    const referenceDate = new Date();
+    referenceDate.setHours(3, 0, 0, 0);
 
-    const diffHours = Math.floor(differenceMs / (1000 * 60 * 60));
-    const diffMinutes = Math.floor((differenceMs % (1000 * 60 * 60)) / (1000 * 60));
-    const diffSeconds = Math.floor((differenceMs % (1000 * 60)) / 1000);
+    // Difference: 3:00 - givenTime
+    const differenceMs = referenceDate - givenDate;
 
-    return `${Math.abs(diffHours)}:${Math.abs(diffMinutes)}`;
+    // Apply this difference to the current time
+    const adjustedTime = new Date(now.getTime() - differenceMs);
+
+    // Extract hours and minutes
+    const adjustedHours = adjustedTime.getHours().toString().padStart(2, "0");
+    const adjustedMinutes = adjustedTime.getMinutes().toString().padStart(2, "0");
+
+    return `${adjustedHours}:${adjustedMinutes}`;
 }
-
 window.onload = function () {
     appear();
     let hours = 2;
