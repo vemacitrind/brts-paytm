@@ -7,20 +7,6 @@
     <title>Brts - Paytm</title>
     <link href="/src/bootstrap@5.3.0.css" rel="stylesheet">
     <link rel="stylesheet" href="/src/style.css">
-    <style>
-        #loader {
-            display: flex;
-            position: inherit;
-            /* top: 0; */
-            /* left: 0; */
-            width: 100%;
-            height: 80vh;
-            background: white;
-            justify-content: center;
-            align-items: center;
-            transform: scale(1.5);
-        }
-    </style>
 </head>
 
 <body>
@@ -31,38 +17,181 @@
                 <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5"/>
             </svg>
           <!-- </button> -->
-          
+
           <a class="navbar-brand mx-auto" href="#">
             <img src="../assets/Paytm-Logo.wine.png" alt="Logo" height="30">
           </a>
-      
+
           <span class="navbar-text fw-bold" style="color: #02bbf2;" id="fs-btn" role="button">
             Help
           </span>
         </div>
     </nav>
-    <div style="position: relative;">
 
-        <div id="loader">
-            <svg width="120" height="40" viewBox="0 0 300 100">
-                <circle cx="40" cy="50" r="16" fill="#002e6e">
-                    <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="80" cy="50" r="16" fill="#002e6e">
-                    <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.05s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="120" cy="50" r="16" fill="#002e6e">
-                    <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.1s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="160" cy="50" r="16" fill="#00b9f5">
-                    <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.15s" repeatCount="indefinite"/>
-                </circle>
-                <circle cx="200" cy="50" r="16" fill="#00b9f5">
-                    <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.2s" repeatCount="indefinite"/>
-                </circle>
-            </svg>
+    <div class="container-fluid m-0 p-3">
+        <div id="colorContainer" class="container-fluid rounded-2 p-3">
+            <!-- Logo -->
+            <div class="row disappear">
+                <div class="col-12 d-flex justify-content-center">
+                    <img src="../assets/AMTS_Logo.png" alt="janmitra-logo" class="rounded-pill" height="70">
+                </div>
+            </div>
+            <!-- destination details -->
+            <div class="row my-2">
+                <div class="col-5 d-flex align-items-center justify-content-end p-0 fw-bold fs-4" id="from">Raipur Da...</div><!--Len12-->
+                <div class="col-2 d-flex align-items-center justify-content-center">
+                    <svg width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16" style="transform: scale(2.2);">
+                        <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
+                    </svg>
+                </div>
+                <div class="col-5 d-flex align-items-center justify-content-start p-0 fw-bold fs-4" id="to">Khokhara ...</div>
+            </div>
+            <div class="row mb-3 disappear">
+                <div class="col-12 text-center fs-sm mb-1">AC</div>
+                <div class="col-12 text-center fs-sm">1 Adult Ticket</div><!--Count will be added here-->
+            </div>
+            <!-- person -->
+            <div class="row mb-3 disappear">
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <img src="../assets/person.png" class="person" alt="" width="70">
+                    <span id="count" class="fw-semibold fs-4">1</span>
+                </div>
+            </div>
+            <!-- money & Date Time -->
+            <div class="row">
+                <div class="col-12 d-flex align-items-center justify-content-center fw-bold rupee disappear" style="font-size: xx-large;">
+                    &#x20B9; 20 
+                    <img class="ms-1" src="assets/image.png" alt="" height="35">
+                </div>
+                <div class="col-12 d-flex justify-content-center fw-bold mb-1 disappear">
+                    TICKET BOOKED SUCCESSFULLY
+                </div>
+                <div class="col-12 text-center" id="date-time">
+                    10 Monday 2025, 8:45
+                </div>
+            </div>
+
+            <div class="row appear">
+                <div class="col">
+                    <img src="/assets/qrcode.png" class="w-100 p-3" onclick="visibilityToggle()">
+                </div>
+            </div>
+
+            <hr style="height: 1px;width: 100%;border-width: 0;color: rgb(224, 2, 2);background-color: #3e3d3d9e;">
+
+            <div class="container-fluid bg-light rounded-4 p-3 mb-3">
+                <div class="row">
+                    <div class="col text-center fw-medium">
+                        Your ticket is valid for 
+                    </div>
+                </div>
+                <div class="row px-3 mb-2">
+                    <div class="col-4 text-center semicolon fw-bold" style="font-size: xx-large;">02</div>
+                    <div class="col-4 text-center semicolon fw-bold" style="font-size: xx-large;">30</div>
+                    <div class="col-4 text-center fw-bold" style="font-size: xx-large;">00</div>
+                    <div class="col-4 text-center fw-medium">HOURS</div>
+                    <div class="col-4 text-center fw-medium">MINUTES</div>
+                    <div class="col-4 text-center fw-medium">SECONDS</div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn w-100 text-light" id="view-ticket">View your ticket</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <div class="qr-grid" onclick="visibilityToggle()">
+    </div>
+
+    <div class="container m-0 px-3 pt-2 mb-5">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Trip Details</h5>
+                <div class="mb-3 border-bottom">
+                    <div class="text-muted small fw-semibold">OPERATOR</div>
+                    <div class="text-dark">AMTS</div>
+                </div>
+                <div class="mb-3 border-bottom">
+                    <div class="text-muted small fw-semibold">CHANGE OVER BUS STOP</div>
+                    <div class="text-dark">Iskcon Cross Road</div>
+                </div>
+                <div class="mb-3">
+                    <div class="fw-bold order-id">Order ID: 12345678901 <span class="ms-1" style="color: var(--blue-color);" role="button">copy</span></div>
+                    <div class="text-muted mt-2" style="font-size: x-small;">For any queries regarding QR Ticket, please contact BRTS with Order ID.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Payment Details</h5>
+                <div class="mb-3 border-bottom">
+                    <div class="text-muted small fw-semibold">FARE BREAKUP</div>
+                    <div class="d-flex justify-content-between">
+                        <span>1 X Adult</span>
+                        <span class="text-dark rupee">&#8377; 20</span>
+                    </div>
+                </div>
+                <div class="mb-3 border-bottom">
+                    <div class="d-flex justify-content-between">
+                        <span>TOTAL</span>
+                        <span class="rupee">&#8377; 20</span>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="text-muted small fw-semibold">PAYMENT MODE</div>
+                    <div class="d-flex justify-content-between pb-2">
+                        <span>UPI Linked Bank Account</span>
+                        <span class="fw-bold rupee">&#8377; 20</span>
+                    </div>
+                    <div class="small text-muted mt-2 transaction-id">Transaction ID: 501009064222</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="height: 100px;"></div>
+    </div>
+
+    <div class="floating">
+        <div class="floating-island">
+            <button>
+                <img src="../assets/home.png" alt="Home">
+                Home
+            </button>
+            <button>
+                <img class="acc" src="../assets/cashback.png" alt="About" style="width: 40px;height: 40px;">
+                Cashback
+            </button>
+            <button>
+                <img src="../assets/contact.png" alt="Help">
+                Help
+            </button>
+        </div>
+    </div>
+
+    <div id="loader">
+        <svg width="120" height="40" viewBox="0 0 300 100">
+        <circle cx="40" cy="50" r="16" fill="#002e6e">
+            <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="80" cy="50" r="16" fill="#002e6e">
+            <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.05s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="120" cy="50" r="16" fill="#002e6e">
+            <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.1s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="160" cy="50" r="16" fill="#00b9f5">
+            <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.15s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="200" cy="50" r="16" fill="#00b9f5">
+            <animate attributeName="r" values="16; 8; 16" dur="0.5s" begin="0.2s" repeatCount="indefinite"/>
+        </circle>
+        </svg>
+    </div>
+
+<script src="/src/script.js"></script>
 </body>
 
-</html>
+</html>>
