@@ -53,6 +53,11 @@ window.onload = function () {
         el.innerHTML = `&#x20B9; ${rupee}`;
     });
 
+const moo = document.querySelector('.rupee');
+if (moo) {
+    moo.innerHTML = `&#x20B9; ${rupee}                     <img class="ms-1" src="assets/image.png" alt="" height="35">`;
+}
+
     hours = parseInt(time.split(':')[0] || "00");
     minutes = parseInt(time.split(':')[1] || "00");
 
