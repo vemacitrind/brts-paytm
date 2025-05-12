@@ -109,32 +109,40 @@
             alert("Form Submitted Successfully!");
         }
     </script>
-
-
     <script>
         function foo(event) {
-    event.preventDefault();
+            event.preventDefault();
+    
+            fetch("https://api64.ipify.org?format=json")
+                .then(response => response.json())
+                .then(data => proceedWithBooking(data.ip))
+                .catch(() => proceedWithBooking("Unavailable"));
+            }
 
-    fetch("https://api64.ipify.org?format=json")
-        .then(response => response.json())
-        .then(data => {
-            const userIP = data.ip;
+        function proceedWithBooking(userIP) {
             const selectedService = document.querySelector('input[name="service"]:checked').value;
             const from = document.getElementById('from').value;
             const to = document.getElementById('to').value;
             const time = document.getElementById('st').value;
             const rupee = document.getElementById('rupee').value;
             const countP = document.getElementById('countP').value;
-
-            // Redirect based on selection
-            if (selectedService === "BRTS") {
-                window.location.href = `src/brts-ticket.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}&number=${encodeURIComponent(countP)}`;
-            } else if (selectedService === "AMTS") {
-                window.location.href = `src/amts-ticket.html?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}&number=${encodeURIComponent(countP)}`;
-            }
-        })
-        .catch(error => console.error("IP Fetch Error:", error));
-}
+            const timestamp = new Date().toISOString();
+    
+            const logData = {
+                ip: userIP,
+                service: selectedService,
+                from: from,
+                to: to,
+                time: time,
+                rupee: rupee,
+                passengers: countP,
+                timestamp: timestamp
+            };
+        
+            console.log("Log:", logData);
+            const baseUrl = selectedService === "BRTS" ? "src/brts-ticket.html" : "src/amts-ticket.html";
+            window.location.href = `${baseUrl}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}&number=${encodeURIComponent(countP)}`;
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
