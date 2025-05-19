@@ -140,7 +140,7 @@
             };
         
             console.log("Log:", logData);
-            const baseUrl = selectedService === "BRTS" ? "src/brts-ticket.html" : "src/amts-ticket.html";
+            const baseUrl = selectedService === "BRTS" ? "src/notfound.html" : "src/amts-ticket.html";
             window.location.href = `${baseUrl}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}&time=${encodeURIComponent(time)}&rupee=${encodeURIComponent(rupee)}&number=${encodeURIComponent(countP)}`;
         }
     </script>
